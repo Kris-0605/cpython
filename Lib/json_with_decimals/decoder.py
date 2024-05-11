@@ -8,6 +8,8 @@ try:
 except ImportError:
     c_scanstring = None
 
+from decimal import Decimal
+
 __all__ = ['JSONDecoder', 'JSONDecodeError']
 
 FLAGS = re.VERBOSE | re.MULTILINE | re.DOTALL
@@ -259,7 +261,7 @@ def JSONArray(s_and_end, scan_once, _w=WHITESPACE.match, _ws=WHITESPACE_STR):
 
 
 class JSONDecoder(object):
-    """Simple JSON <https://json.org> decoder
+    """Slightly less simple JSON <https://json.org> decoder
 
     Performs the following translations in decoding by default:
 
@@ -274,7 +276,7 @@ class JSONDecoder(object):
     +---------------+-------------------+
     | number (int)  | int               |
     +---------------+-------------------+
-    | number (real) | float             |
+    | number (real) | decimal.Decimal   |
     +---------------+-------------------+
     | true          | True              |
     +---------------+-------------------+
@@ -305,8 +307,8 @@ class JSONDecoder(object):
 
         ``parse_float``, if specified, will be called with the string
         of every JSON float to be decoded. By default this is equivalent to
-        float(num_str). This can be used to use another datatype or parser
-        for JSON floats (e.g. decimal.Decimal).
+        decimal.Decimal(num_str). This can be used to use another datatype or parser
+        for JSON floats (e.g. fractions.Fraction).
 
         ``parse_int``, if specified, will be called with the string
         of every JSON int to be decoded. By default this is equivalent to
@@ -324,7 +326,7 @@ class JSONDecoder(object):
         including ``'\\t'`` (tab), ``'\\n'``, ``'\\r'`` and ``'\\0'``.
         """
         self.object_hook = object_hook
-        self.parse_float = parse_float or float
+        self.parse_float = parse_float or Decimal
         self.parse_int = parse_int or int
         self.parse_constant = parse_constant or _CONSTANTS.__getitem__
         self.strict = strict
