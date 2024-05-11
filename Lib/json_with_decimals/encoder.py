@@ -81,23 +81,23 @@ class JSONEncoder(object):
 
     Supports the following objects and types by default:
 
-    +-------------------+---------------+
-    | Python            | JSON          |
-    +===================+===============+
-    | dict              | object        |
-    +-------------------+---------------+
-    | list, tuple       | array         |
-    +-------------------+---------------+
-    | str               | string        |
-    +-------------------+---------------+
-    | int, float        | number        |
-    +-------------------+---------------+
-    | True              | true          |
-    +-------------------+---------------+
-    | False             | false         |
-    +-------------------+---------------+
-    | None              | null          |
-    +-------------------+---------------+
+    +-----------------------------+---------------+
+    | Python                      | JSON          |
+    +=============================+===============+
+    | dict                        | object        |
+    +-----------------------------+---------------+
+    | list, tuple                 | array         |
+    +-----------------------------+---------------+
+    | str                         | string        |
+    +-----------------------------+---------------+
+    | int, float, decimal.Decimal | number        |
+    +-----------------------------+---------------+
+    | True                        | true          |
+    +-----------------------------+---------------+
+    | False                       | false         |
+    +-----------------------------+---------------+
+    | None                        | null          |
+    +-----------------------------+---------------+
 
     To extend this to recognize other objects, subclass and implement a
     ``.default()`` method with another method that returns a serializable
@@ -110,7 +110,7 @@ class JSONEncoder(object):
     def __init__(self, *, skipkeys=False, ensure_ascii=True,
             check_circular=True, allow_nan=True, sort_keys=False,
             indent=None, separators=None, default=None, support_decimal=True):
-        """Constructor for JSONEncoder, with sensible defaults.
+        """Constructor for JSONEncoder, with almost sensible defaults.
 
         If skipkeys is false, then it is a TypeError to attempt
         encoding of keys that are not str, int, float or None.  If
