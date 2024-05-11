@@ -109,7 +109,7 @@ class JSONEncoder(object):
     key_separator = ': '
     def __init__(self, *, skipkeys=False, ensure_ascii=True,
             check_circular=True, allow_nan=True, sort_keys=False,
-            indent=None, separators=None, default=None, support_decimal=False):
+            indent=None, separators=None, default=None, support_decimal=True):
         """Constructor for JSONEncoder, with sensible defaults.
 
         If skipkeys is false, then it is a TypeError to attempt
@@ -150,6 +150,7 @@ class JSONEncoder(object):
 
         If support_decimal is true, then decimal.Decimal objects
         will be encoded as real numbers, instead of raising a TypeError.
+        True is the default.
 
         """
 
