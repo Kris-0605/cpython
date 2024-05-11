@@ -1,1 +1,0 @@
-Allow the json module to encode decimal.Decimal objects when the optional "support_decimal" parameter is set to true.
